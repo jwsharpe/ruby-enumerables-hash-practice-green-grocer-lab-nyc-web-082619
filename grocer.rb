@@ -19,7 +19,7 @@ def apply_coupons(cart, coupons)
     coupon_key = coupon.keys[0]
     if(!cart(coupon_key))
       if(cart(coupon_key)[:count]>=coupon_key[:num])
-        discount_price = 
+        discount_price = (coupon_key[:price] / coupon_key[:num]).rount(2)
         
         cart(coupon_key)[:count] -= coupon_key[:num]
         
