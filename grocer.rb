@@ -17,8 +17,13 @@ end
 def apply_coupons(cart, coupons)
   for coupon in coupons do
     coupon_key = coupon.keys[0]
-    if(!cart(coupon.keys[0]))
-      if(cart(coupon.keys[0]))
+    if(!cart(coupon_key))
+      if(cart(coupon_key)[:count]>=coupon_key[:num])
+        discount_price = 
+        
+        cart(coupon_key)[:count] -= coupon_key[:num]
+        
+        cart("#{coupon_key} W/COUPON") = {:price =
 end
 
 def apply_clearance(cart)
