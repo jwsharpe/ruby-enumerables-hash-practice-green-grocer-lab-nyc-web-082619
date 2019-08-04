@@ -15,24 +15,29 @@ def consolidate_cart(cart)
 end
 
 def apply_coupons(cart, coupons)
+  coupon_cart = cart
   for coupon in coupons do
-    coupon_key = coupon.keys[0]
-    if(!cart[coupon_key])
-      if(cart[coupon_key][:count]>=coupon_key[:num])
-        unit_discount_price = (coupon_key[:price] / coupon_key[:num]).rount(2)
-        unit_on_clearance = cart[coupon_key][:clearance]
-        unit_count = coupon_key[:num]
+    coupon_key = coupon[:item]
+	
+	if(!coupon_cart[coupon_key])
+	  break
+	end
+	
+    if(coupon_cart[coupon_key][:count] >= coupon[:num])
+	  unit_discount_price = (coupon[:cost] / coupon[:num]).round(2)
+      unit_on_clearance = coupon_cart[coupon_key][:clearance]
+      unit_count = coupon[:num]
         
-        cart(coupon_key)[:count] -= coupon_key[:num]
-        
-        cart("#{coupon_key} W/COUPON") = {
-          price: unit_discount_price,
-          clearance: unit_on_clearance,
-          count: unit_count
-        }
-      end
+      coupon_cart[coupon_key][:count] -= coupon[:num]
+       
+      coupon_cart["#{coupon_key} W/COUPON"] = {
+	  price: unit_discount_price,
+      clearance: unit_on_clearance,
+	  count: unit_count}	
     end
   end
+  
+  return coupon_cart
 end
 
 def apply_clearance(cart)
