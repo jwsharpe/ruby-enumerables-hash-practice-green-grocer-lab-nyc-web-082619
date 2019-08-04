@@ -36,7 +36,7 @@ def apply_coupons(cart, coupons)
         clearance: unit_on_clearance,
 	      count: unit_count}
 	    else
-	      coupon_cart["#{coupon_key} W/COUPON"][count:] += unit_count
+	      coupon_cart["#{coupon_key} W/COUPON"][:count] += unit_count
 	    end 
     end
   end
