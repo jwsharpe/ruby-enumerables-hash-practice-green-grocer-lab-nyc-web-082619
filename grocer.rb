@@ -16,7 +16,9 @@ end
 
 def apply_coupons(cart, coupons)
   for coupon in coupons do
-    
+    coupon_key = coupon.keys[0]
+    if(!cart(coupon.keys[0]))
+      if(cart(coupon.keys[0]))
 end
 
 def apply_clearance(cart)
