@@ -18,18 +18,26 @@ def apply_coupons(cart, coupons)
   coupon_cart = cart
   for coupon in coupons do
     coupon_key = coupon[:item]
-
-  if(coupon_cart[coupon_key][:count] >= coupon[:num])
-	  unit_discount_price = (coupon[:cost] / coupon[:num]).round(2)
-    unit_on_clearance = coupon_cart[coupon_key][:clearance]
-    unit_count = coupon[:num]
+	
+	  if(!coupon_cart[coupon_key])
+	    break
+  	end
+	
+    if(coupon_cart[coupon_key][:count] >= coupon[:num])
+	    unit_discount_price = (coupon[:cost] / coupon[:num]).round(2)
+      unit_on_clearance = coupon_cart[coupon_key][:clearance]
+      unit_count = coupon[:num]
         
-    coupon_cart[coupon_key][:count] -= coupon[:num]
+      coupon_cart[coupon_key][:count] -= coupon[:num]
        
-    coupon_cart["#{coupon_key} W/COUPON"] = {
-	  price: unit_discount_price,
-    clearance: unit_on_clearance,
-	  count: unit_count}	
+      if(!coupon_cart["#{coupon_key} W/COUPON"])
+        coupon_cart["#{coupon_key} W/COUPON"]= {
+	      price: unit_discount_price,
+        clearance: unit_on_clearance,
+	      count: unit_count}
+	    else
+	      coupon_cart["#{coupon_key} W/COUPON"][count:] += unit_count
+	    end 
     end
   end
   
