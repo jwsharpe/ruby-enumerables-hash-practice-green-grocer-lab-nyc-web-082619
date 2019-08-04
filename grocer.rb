@@ -31,5 +31,8 @@ def checkout(cart, coupons)
   cart = apply_coupons(cart)
   cart = apply_clearance(cart)
   
-  cart.reduce
+  sum = 0
+  cart.each do |key, value|
+    sum += (cart[key][:price] * cart[key][:count])
+  end
 end
