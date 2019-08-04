@@ -1,5 +1,5 @@
 def consolidate_cart(cart)
-  consolidated_cart = Hash.new
+  consolidated_cart = []]
   for item in cart do
     item_key	= item.keys[0]
 	  item_values = item.values[0]
