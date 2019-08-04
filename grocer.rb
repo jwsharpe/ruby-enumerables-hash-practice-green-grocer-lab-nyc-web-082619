@@ -1,7 +1,7 @@
 def consolidate_cart(cart)
   consolidate_cart = {}
   for item in cart {
-    
+    consolidate_cart.
   }
     
 end
