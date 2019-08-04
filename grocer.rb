@@ -1,6 +1,8 @@
 def consolidate_cart(cart)
-  consolidate_cart = []
-  for item in cart do
+  consolidate_cart = {}
+  for item in cart {
+    
+  }
     
 end
 
